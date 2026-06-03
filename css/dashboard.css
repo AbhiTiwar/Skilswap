@@ -266,3 +266,150 @@ body {
     margin-left: 200px;
   }
 }
+
+
+
+
+.content-section {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease;
+}
+
+.content-section.active-section {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.skill-item,
+.stat-card,
+.discover-card,
+.request-card {
+  transition: all 0.3s ease;
+}
+
+.skill-item:hover,
+.stat-card:hover,
+.discover-card:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+/* notification  */
+
+.notification {
+  cursor: pointer;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+.notif-panel {
+  position: absolute;
+  right: 20px;
+  top: 70px;
+  width: 250px;
+  background: rgba(0,0,0,0.9);
+  border-radius: 10px;
+  padding: 10px;
+  display: none;
+  z-index: 999;
+}
+
+
+
+/* profile Secton */
+
+.profile-card {
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 15px;
+  width: 280px;
+  text-align: center;
+}
+
+.avatar {
+  font-size: 50px;
+}
+
+.profile-details {
+  margin-top: 20px;
+}
+
+.info-box {
+  background: rgba(255,255,255,0.03);
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 10px;
+}
+
+
+.profile-wrapper {
+  display: flex;
+  gap: 25px;
+  margin-top: 20px;
+}
+
+/* LEFT CARD */
+.profile-card {
+  width: 280px;
+  background: rgba(255,255,255,0.05);
+  padding: 25px;
+  border-radius: 18px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.avatar-box img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  border: 3px solid #6c5ce7;
+  transition: 0.3s;
+}
+
+.avatar-box img:hover {
+  transform: scale(1.05);
+}
+
+.profile-card h3 {
+  margin-top: 10px;
+}
+
+.profile-card p {
+  color: rgba(255,255,255,0.7);
+}
+
+.profile-card button {
+  margin-top: 15px;
+  padding: 10px 14px;
+  border: none;
+  background: #6c5ce7;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* RIGHT SIDE */
+.profile-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.info-card {
+  background: rgba(255,255,255,0.04);
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+.info-card h4 {
+  margin-bottom: 5px;
+  color: #00cec9;
+}
