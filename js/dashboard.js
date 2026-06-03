@@ -12,10 +12,18 @@ if (!localStorage.getItem("loggedIn")) {
 /* -------------------------
    USER INIT
 -------------------------- */
-let user = localStorage.getItem("user") || "User";
+let user = JSON.parse(localStorage.getItem("user")) || {
+  name: "User",
+  email: "Not set"
+};
 
-document.getElementById("userName").innerText = user;
-document.getElementById("profileName").innerText = user;
+document.getElementById("userName").innerText = user.name;
+
+// PROFILE FILL
+document.getElementById("profileName").innerText = user.name;
+document.getElementById("profileEmail").innerText = user.email;
+document.getElementById("fullName").innerText = user.name;
+document.getElementById("email").innerText = user.email;
 
 /* -------------------------
    SIDEBAR NAVIGATION
@@ -100,3 +108,124 @@ function deleteSkill(index) {
    INIT
 -------------------------- */
 renderSkills();
+
+
+
+
+const users = [
+  { name: "Rahul Sharma", skills: ["React", "UI"] },
+  { name: "Priya Verma", skills: ["Figma", "Design"] },
+  { name: "Aman Gupta", skills: ["Node", "JS"] }
+];
+
+function renderDiscover(filter = "") {
+  const container = document.querySelector(".discover-grid");
+  container.innerHTML = "";
+
+  users
+    .filter(u => u.skills.join(" ").toLowerCase().includes(filter.toLowerCase()))
+    .forEach(user => {
+      container.innerHTML += `
+        <div class="discover-card">
+          <h3>${user.name}</h3>
+          <p>${user.skills.join(", ")}</p>
+          <button onclick="sendRequest('${user.name}')">Request Swap</button>
+        </div>
+      `;
+    });
+}
+
+function sendRequest(name) {
+  addNotification("Request sent to " + name);
+}
+
+
+
+document.querySelector(".search-box input")
+.addEventListener("input", (e) => {
+  renderDiscover(e.target.value);
+});
+
+
+
+
+let requests = [
+  { from: "Priya Verma", skill: "JavaScript" }
+];
+
+function renderRequests() {
+  const container = document.querySelector("#requestsSection");
+
+  container.innerHTML = "";
+
+  requests.forEach((r, index) => {
+    container.innerHTML += `
+      <div class="request-card">
+        <h3>${r.from}</h3>
+        <p>wants to learn ${r.skill}</p>
+
+        <button onclick="acceptReq(${index})">Accept</button>
+        <button onclick="rejectReq(${index})">Reject</button>
+      </div>
+    `;
+  });
+}
+
+function acceptReq(i) {
+  addNotification("Request Accepted");
+  requests.splice(i,1);
+  renderRequests();
+}
+
+function rejectReq(i) {
+  addNotification("Request Rejected");
+  requests.splice(i,1);
+  renderRequests();
+}
+
+
+let notifications = [];
+
+function addNotification(text) {
+  notifications.push(text);
+
+  const count = document.getElementById("notifCount");
+  if (count) count.innerText = notifications.length;
+
+  renderNotifications();
+}
+
+function renderNotifications() {
+  const panel = document.getElementById("notifPanel");
+  if (!panel) return;
+
+  panel.innerHTML = "";
+
+  notifications.forEach(n => {
+    panel.innerHTML += `<p style="margin:5px 0;">• ${n}</p>`;
+  });
+}
+
+function toggleNotif() {
+  const panel = document.getElementById("notifPanel");
+
+  if (!panel) return;
+
+  panel.style.display =
+    panel.style.display === "block" ? "none" : "block";
+}
+
+
+
+renderDiscover();
+
+
+document.querySelector(".search-box input")
+
+const searchInput = document.querySelector(".search-box input");
+
+if (searchInput) {
+  searchInput.addEventListener("input", (e) => {
+    renderDiscover(e.target.value);
+  });
+}
