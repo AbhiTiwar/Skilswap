@@ -1,26 +1,224 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="css/auth.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SkillSwap Dashboard</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/main.css">
+  <link rel="stylesheet" href="css/dashboard.css">
 </head>
+
 <body>
 
-  <div class="auth-container">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
 
-    <div class="auth-box">
-
-      <h2>Dashboard 🚀</h2>
-
-      <p>Welcome, <span id="userEmail"></span></p>
-
-      <button onclick="logout()">Logout</button>
-
+    <div class="sidebar-logo">
+      SkillSwap
     </div>
 
-  </div>
+    <ul class="sidebar-menu">
+
+      <li class="menu-item active" data-section="dashboardSection">
+        🏠 Dashboard
+      </li>
+
+      <li class="menu-item" data-section="skillsSection">
+        🎯 My Skills
+      </li>
+
+      <li class="menu-item" data-section="discoverSection">
+        🔍 Discover
+      </li>
+
+      <li class="menu-item" data-section="requestsSection">
+        🤝 Requests
+      </li>
+
+      <li class="menu-item" data-section="profileSection">
+        👤 Profile
+      </li>
+
+      <li onclick="logout()">
+        🚪 Logout
+      </li>
+
+    </ul>
+
+  </aside>
+
+  <!-- MAIN -->
+  <main class="dashboard-main">
+
+    <!-- TOPBAR -->
+    <header class="topbar">
+
+      <div class="search-box">
+        <input
+          type="text"
+          placeholder="Search skills..."
+        >
+      </div>
+
+      <div class="top-user">
+
+        <span id="userName">
+          User
+        </span>
+
+      </div>
+
+    </header>
+
+    <!-- DASHBOARD -->
+    <section id="dashboardSection" class="content-section active-section">
+
+      <h2>Dashboard Overview</h2>
+
+      <div class="stats-grid">
+
+        <div class="stat-card">
+          <h3 id="skillsCount">0</h3>
+          <p>My Skills</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>12</h3>
+          <p>Connections</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>5</h3>
+          <p>Requests</p>
+        </div>
+
+        <div class="stat-card">
+          <h3>3</h3>
+          <p>Active Swaps</p>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- MY SKILLS -->
+    <section id="skillsSection" class="content-section">
+
+      <h2>My Skills</h2>
+
+      <div class="add-skill">
+
+        <input
+          type="text"
+          id="skillInput"
+          placeholder="Enter skill..."
+        >
+
+        <button onclick="addSkill()">
+          Add Skill
+        </button>
+
+      </div>
+
+      <div id="skillsList" class="skills-list">
+
+      </div>
+
+    </section>
+
+    <!-- DISCOVER -->
+    <section id="discoverSection" class="content-section">
+
+      <h2>Discover People</h2>
+
+      <div class="discover-grid">
+
+        <div class="discover-card">
+          <h3>Rahul Sharma</h3>
+          <p>React • UI Design</p>
+          <button>Request Swap</button>
+        </div>
+
+        <div class="discover-card">
+          <h3>Priya Verma</h3>
+          <p>Graphic Design • Figma</p>
+          <button>Request Swap</button>
+        </div>
+
+        <div class="discover-card">
+          <h3>Aman Gupta</h3>
+          <p>JavaScript • Node.js</p>
+          <button>Request Swap</button>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- REQUESTS -->
+    <section id="requestsSection" class="content-section">
+
+      <h2>Skill Requests</h2>
+
+      <div class="request-card">
+
+        <h3>Priya Verma</h3>
+
+        <p>
+          Wants to learn JavaScript
+        </p>
+
+        <div class="request-actions">
+
+          <button>
+            Accept
+          </button>
+
+          <button>
+            Reject
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- PROFILE -->
+    <section id="profileSection" class="content-section">
+
+      <h2>My Profile</h2>
+
+      <div class="profile-card">
+
+        <div class="avatar">
+          👤
+        </div>
+
+        <h3 id="profileName">
+          User
+        </h3>
+
+        <p>
+          SkillSwap Member
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
 
   <script src="js/dashboard.js"></script>
 
 </body>
+
 </html>
