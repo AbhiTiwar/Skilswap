@@ -142,9 +142,9 @@ function sendRequest(name) {
 
 
 document.querySelector(".search-box input")
-.addEventListener("input", (e) => {
-  renderDiscover(e.target.value);
-});
+  .addEventListener("input", (e) => {
+    renderDiscover(e.target.value);
+  });
 
 
 
@@ -173,13 +173,13 @@ function renderRequests() {
 
 function acceptReq(i) {
   addNotification("Request Accepted");
-  requests.splice(i,1);
+  requests.splice(i, 1);
   renderRequests();
 }
 
 function rejectReq(i) {
   addNotification("Request Rejected");
-  requests.splice(i,1);
+  requests.splice(i, 1);
   renderRequests();
 }
 
@@ -228,4 +228,188 @@ if (searchInput) {
   searchInput.addEventListener("input", (e) => {
     renderDiscover(e.target.value);
   });
+}
+
+
+
+
+// edit profile
+
+function openEditProfile() {
+
+  document.getElementById("editProfileModal").style.display = "flex";
+
+  document.getElementById("editName").value = user.name;
+  document.getElementById("editEmail").value = user.email;
+
+  document.getElementById(
+    "editBio"
+  ).value =
+    localStorage.getItem("bio") || "";
+}
+
+function closeEditProfile() {
+  document.getElementById("editProfileModal").style.display = "none";
+}
+
+
+
+
+
+function saveProfile() {
+
+  const name =
+    document.getElementById("editName").value.trim();
+
+  const email =
+    document.getElementById("editEmail").value.trim();
+
+
+  const bio =
+    document.getElementById("editBio").value;
+
+  localStorage.setItem(
+    "bio",
+    bio
+  );
+
+  document.getElementById(
+    "aboutText"
+  ).innerText = bio;
+
+  if (!name || !email) {
+    alert("Fill all fields");
+    return;
+  }
+
+  user.name = name;
+  user.email = email;
+
+  localStorage.setItem(
+    "user",
+    JSON.stringify(user)
+  );
+
+  document.getElementById("userName").innerText =
+    user.name;
+
+  document.getElementById("profileName").innerText =
+    user.name;
+
+  document.getElementById("profileEmail").innerText =
+    user.email;
+
+  document.getElementById("fullName").innerText =
+    user.name;
+
+  document.getElementById("email").innerText =
+    user.email;
+
+
+  closeEditProfile();
+
+  addNotification("Profile Updated");
+}
+
+
+
+
+let bio =
+  localStorage.getItem("bio") ||
+  "No bio added yet.";
+
+document.getElementById("aboutText").innerText =
+  bio;
+
+
+
+function editBio() {
+
+  const newBio = prompt(
+    "Write your bio",
+    localStorage.getItem("bio") || ""
+  );
+
+  if (newBio !== null) {
+
+    localStorage.setItem(
+      "bio",
+      newBio
+    );
+
+    document.getElementById("aboutText").innerText =
+      newBio;
+
+    addNotification("Bio Updated");
+  }
+}
+
+
+
+function renderProfileSkills() {
+
+  const box =
+    document.getElementById("profileSkills");
+
+  if (!box) return;
+
+  box.innerHTML = "";
+
+  skills.forEach(skill => {
+
+    box.innerHTML += `
+      <span class="skill-badge">
+        ${skill}
+      </span>
+    `;
+  });
+
+  document.getElementById(
+    "skillCountProfile"
+  ).innerText = skills.length;
+}
+
+const avatarInput =
+  document.getElementById("avatarInput");
+
+const avatarPreview =
+  document.getElementById("avatarPreview");
+
+if (avatarInput) {
+
+  avatarInput.addEventListener(
+    "change",
+    function () {
+
+      const file =
+        this.files[0];
+
+      if (!file) return;
+
+      const reader =
+        new FileReader();
+
+      reader.onload = function (e) {
+
+        avatarPreview.src =
+          e.target.result;
+
+        localStorage.setItem(
+          "avatar",
+          e.target.result
+        );
+      };
+
+      reader.readAsDataURL(file);
+    }
+  );
+}
+
+const savedAvatar =
+  localStorage.getItem("avatar");
+
+if (savedAvatar) {
+
+  avatarPreview.src =
+    savedAvatar;
 }
