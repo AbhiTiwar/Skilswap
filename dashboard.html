@@ -186,51 +186,156 @@
 
     </section>
 
+
+
+
     <!-- PROFILE -->
     <section id="profileSection" class="content-section">
 
-      <h2>My Profile</h2>
+  <div class="profile-cover"></div>
 
-      <div class="profile-wrapper">
+  <div class="profile-header">
 
-        <!-- LEFT CARD -->
-        <div class="profile-card">
+    <label for="avatarInput" class="avatar-box">
+      <img
+        id="avatarPreview"
+        src="https://i.pravatar.cc/150"
+        alt="Profile">
 
-          <label for="avatarInput" class="avatar-box">
-            <img id="avatarPreview" src="https://i.pravatar.cc/150" alt="Profile">
-            <input type="file" id="avatarInput" accept="image/*" hidden>
-          </label>
+      <input
+        type="file"
+        id="avatarInput"
+        accept="image/*"
+        hidden>
+    </label>
 
-          <h3 id="profileName">User</h3>
-          <p id="profileEmail">user@email.com</p>
+    <div class="profile-meta">
 
-          <button onclick="logout()">Logout</button>
+      <h2 id="profileName">User</h2>
 
+      <p id="profileEmail">
+        user@email.com
+      </p>
+
+      <div class="profile-actions">
+
+        <button onclick="openEditProfile()">
+          ✏️ Edit Profile
+        </button>
+
+        <button onclick="logout()">
+          🚪 Logout
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="profile-grid">
+
+    <div class="info-card">
+
+      <h4>About Me</h4>
+
+      <p id="aboutText">
+        No bio added yet.
+      </p>
+
+    </div>
+
+    <div class="info-card">
+
+      <h4>Account Information</h4>
+
+      <p>
+        <strong>Name:</strong>
+        <span id="fullName">-</span>
+      </p>
+
+      <p>
+        <strong>Email:</strong>
+        <span id="email">-</span>
+      </p>
+
+    </div>
+
+    <div class="info-card">
+
+      <h4>My Skills</h4>
+
+      <div id="profileSkills"></div>
+
+    </div>
+
+    <div class="info-card">
+
+      <h4>Statistics</h4>
+
+      <div class="profile-stats">
+
+        <div>
+          <h3 id="skillCountProfile">0</h3>
+          <span>Skills</span>
         </div>
 
-        <!-- RIGHT INFO -->
-        <div class="profile-info">
+        <div>
+          <h3>12</h3>
+          <span>Connections</span>
+        </div>
 
-          <div class="info-card">
-            <h4>Full Name</h4>
-            <p id="fullName">-</p>
-          </div>
-
-          <div class="info-card">
-            <h4>Email</h4>
-            <p id="email">-</p>
-          </div>
-
-          <div class="info-card">
-            <h4>Skills Count</h4>
-            <p id="skillCountProfile">0</p>
-          </div>
-
+        <div>
+          <h3>5</h3>
+          <span>Requests</span>
         </div>
 
       </div>
 
-    </section>
+    </div>
+
+  </div>
+
+</section>
+
+
+
+   <div id="editProfileModal" class="modal">
+
+  <div class="modal-content">
+
+    <h2>Edit Profile</h2>
+
+    <input
+      type="text"
+      id="editName"
+      placeholder="Full Name">
+
+    <input
+      type="email"
+      id="editEmail"
+      placeholder="Email">
+
+    <textarea
+      id="editBio"
+      placeholder="Write something about yourself">
+    </textarea>
+
+    <div class="modal-actions">
+
+      <button onclick="saveProfile()">
+        Save
+      </button>
+
+      <button onclick="closeEditProfile()">
+        Cancel
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 
   </main>
 
